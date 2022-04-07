@@ -3,6 +3,7 @@
 ## Windows OS
 
 ```
+go mod tidy
 GOOS=windows GOARCH=386 go build -o e-imzo-rest-proxy.exe main.go
 ```
 
