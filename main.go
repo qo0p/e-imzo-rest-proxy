@@ -27,7 +27,7 @@ var (
 func main() {
 	flag.Parse()
 
-	hdr.Set("Origin", "localhost")
+	hdr.Set("Origin", "http://localhost")
 
 	logrus.SetLevel(logrus.Level(*logLevel))
 	mux := http.NewServeMux()
