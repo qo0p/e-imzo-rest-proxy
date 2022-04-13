@@ -86,7 +86,9 @@ func eimzoIO(req []byte) ([]byte, error) {
 			logrus.Errorf("read: %v", err)
 			return
 		}
-		logrus.Tracef("recv: %s", message)
+		if logrus.GetLevel() == logrus.TraceLevel {
+			fmt.Printf("recv json:\n%v\n", string(message))
+		}
 		reply <- message
 	}()
 
@@ -97,7 +99,9 @@ func eimzoIO(req []byte) ([]byte, error) {
 			return
 		}
 	}()
-
+	if logrus.GetLevel() == logrus.TraceLevel {
+		fmt.Printf("sent json:\n%v\n", string(req))
+	}
 	err = c.WriteMessage(websocket.TextMessage, req)
 	if err != nil {
 		logrus.Errorf("write: %v", err)
